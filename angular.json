@@ -51,7 +51,7 @@
               "apps/freestyle/src/favicon.ico",
               "apps/freestyle/src/assets"
             ],
-            "styles": ["apps/freestyle/src/styles.css"],
+            "styles": ["apps/freestyle/src/custom-theme.scss", "apps/freestyle/src/styles.css"],
             "scripts": []
           },
           "configurations": {

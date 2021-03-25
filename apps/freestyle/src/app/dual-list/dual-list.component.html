@@ -1,0 +1,434 @@
+<div class="dual-list">
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav mode="side" opened>
+      <!-- Available Flavors -->
+
+      <mat-button-toggle-group
+        id="flavors"
+        aria-label="Flavors"
+        fxLayout="row wrap"
+      >
+        <mat-button-toggle
+          fxFlex="50%"
+          *ngFor="let item of available.sift; let idx = index"
+          (click)="
+            disabled ? null : selectItem(available.pick, item);
+            shiftClick($event, idx, available, item)
+          "
+          [ngClass]="{
+            selected: isItemSelected(available.pick, item),
+            disabled: disabled
+          }"
+        >
+          <button mat-fab (click)="(onClick)" color="#000">
+            {{ item._name }}
+          </button>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+
+      <!-- <div
+        class="listbox"
+        [ngStyle]="{
+          order: direction() ? 1 : 2,
+          'margin-left': direction() ? 0 : '10px'
+        }"
+      >
+        <div class="record-picker">
+          <ul [ngStyle]="{ 'max-height': height, 'min-height': height }">
+            <li
+              *ngFor="let item of available.sift; let idx = index"
+              (click)="
+                disabled ? null : selectItem(available.pick, item);
+                shiftClick($event, idx, available, item)
+              "
+              [ngClass]="{
+                selected: isItemSelected(available.pick, item),
+                disabled: disabled
+              }"
+            >
+              <label>{{ item._name }}</label>
+            </li>
+          </ul>
+        </div>
+
+        <div class="button-bar">
+          <button
+            type="button"
+            class="btn btn-primary pull-left"
+            (click)="selectAll(available)"
+            [disabled]="disabled || isAllSelected(available)"
+          >
+            {{ format.all }}
+          </button>
+          <button
+            type="button"
+            class="btn btn-default pull-right"
+            (click)="selectNone(available)"
+            [disabled]="!isAnySelected(available)"
+          >
+            {{ format.none }}
+          </button>
+        </div>
+      </div> -->
+      <!-- End Available Flavors -->
+    </mat-sidenav>
+    <mat-sidenav-content class="content">
+      <!-- Slots -->
+      <div id="slots" vertical="true">
+        <div>
+          <h2>S1</h2>
+          <h4 class="unDef">Unassigned</h4>
+          <div align="start">
+            <div
+              row
+              #itmConf
+              *ngFor="let item of S1.sift; let idx = index"
+              (click)="
+                disabled ? null : selectItem(S1.pick, item);
+                shiftClick($event, idx, S1, item)
+              "
+              [ngClass]="{
+                selected: isItemSelected(S1.pick, item),
+                disabled: disabled
+              }"
+            >
+              <mat-card class="addFlavor"
+                >{{ item._name }}
+                <button
+                  mat-icon-button
+                  (click)="moveItem(S1, available)"
+                  color="#fff"
+                  [disabled]="S1.pick.length === 0"
+                >
+                  {{ format.remove }} <mat-icon class="mat-18">clear</mat-icon>
+                </button>
+              </mat-card>
+            </div>
+
+            <button
+              class="assgnBtn"
+              id="assgnBtnS1"
+              mat-raised-button
+              (click)="moveItem(available, S1)"
+              [disabled]="available.pick.length === 0 || S1.list.length >= 1"
+              color="white"
+            >
+              {{ format.add }} {{available.pick.length}} <mat-icon class="mat-18">add</mat-icon>
+            </button>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div>
+          <h2>S2</h2>
+          <h4 class="unDef">Unassigned</h4>
+          <div align="start">
+            <div
+              row
+              #itmConf
+              *ngFor="let item of S2.sift; let idx = index"
+              (click)="
+                disabled ? null : selectItem(S2.pick, item);
+                shiftClick($event, idx, S1, item)
+              "
+              [ngClass]="{
+                selected: isItemSelected(S2.pick, item),
+                disabled: disabled
+              }"
+            >
+              <mat-card class="addFlavor"
+                >{{ item._name }}
+                <button
+                  mat-icon-button
+                  (click)="moveItem(S2, available)"
+                  color="#fff"
+                  [disabled]="S2.pick.length === 0"
+                >
+                  {{ format.remove }} <mat-icon class="mat-18">clear</mat-icon>
+                </button>
+              </mat-card>
+            </div>
+
+            <button
+              class="assgnBtn"
+              id="assgnBtnS2"
+              mat-raised-button
+              (click)="moveItem(available, S2)"
+              [disabled]="available.pick.length === 0 || S2.list.length >= 1"
+              color="white"
+            >
+              {{ format.add }} <mat-icon class="mat-18">add</mat-icon>
+            </button>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div>
+          <h2>S3</h2>
+          <h4 class="unDef">Unassigned</h4>
+          <div align="start">
+            <div
+              row
+              #itmConf
+              *ngFor="let item of S3.sift; let idx = index"
+              (click)="
+                disabled ? null : selectItem(S3.pick, item);
+                shiftClick($event, idx, S1, item)
+              "
+              [ngClass]="{
+                selected: isItemSelected(S3.pick, item),
+                disabled: disabled
+              }"
+            >
+              <mat-card class="addFlavor"
+                >{{ item._name }}
+                <button
+                  mat-icon-button
+                  (click)="moveItem(S3, available)"
+                  color="#fff"
+                  [disabled]="S3.pick.length === 0"
+                >
+                  {{ format.remove }} <mat-icon class="mat-18">clear</mat-icon>
+                </button>
+              </mat-card>
+            </div>
+
+            <button
+              class="assgnBtn"
+              id="assgnBtnS3"
+              mat-raised-button
+              (click)="moveItem(available, S3)"
+              [disabled]="available.pick.length === 0 || S3.list.length >= 1"
+              color="white"
+            >
+              {{ format.add }} <mat-icon class="mat-18">add</mat-icon>
+            </button>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div>
+          <h2>S4</h2>
+          <h4 class="unDef">Unassigned</h4>
+          <div align="start">
+            <div
+              row
+              #itmConf
+              *ngFor="let item of S4.sift; let idx = index"
+              (click)="
+                disabled ? null : selectItem(S4.pick, item);
+                shiftClick($event, idx, S1, item)
+              "
+              [ngClass]="{
+                selected: isItemSelected(S4.pick, item),
+                disabled: disabled
+              }"
+            >
+              <mat-card class="addFlavor"
+                >{{ item._name }}
+                <button
+                  mat-icon-button
+                  (click)="moveItem(S4, available)"
+                  color="#fff"
+                  [disabled]="S4.pick.length === 0"
+                >
+                  {{ format.remove }} <mat-icon class="mat-18">clear</mat-icon>
+                </button>
+              </mat-card>
+            </div>
+
+            <button
+              class="assgnBtn"
+              id="assgnBtnS4"
+              mat-raised-button
+              (click)="moveItem(available, S4)"
+              [disabled]="available.pick.length === 0 || S4.list.length >= 1"
+              color="white"
+            >
+              {{ format.add }} <mat-icon class="mat-18">add</mat-icon>
+            </button>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div>
+          <h2>S5</h2>
+          <h4 class="unDef">Unassigned</h4>
+          <div align="start">
+            <div
+              row
+              #itmConf
+              *ngFor="let item of S5.sift; let idx = index"
+              (click)="
+                disabled ? null : selectItem(S5.pick, item);
+                shiftClick($event, idx, S1, item)
+              "
+              [ngClass]="{
+                selected: isItemSelected(S5.pick, item),
+                disabled: disabled
+              }"
+            >
+              <mat-card class="addFlavor"
+                >{{ item._name }}
+                <button
+                  mat-icon-button
+                  (click)="moveItem(S5, available)"
+                  color="#fff"
+                  [disabled]="S6.pick.length === 0"
+                >
+                  {{ format.remove }} <mat-icon class="mat-18">clear</mat-icon>
+                </button>
+              </mat-card>
+            </div>
+
+            <button
+              class="assgnBtn"
+              id="assgnBtnS5"
+              mat-raised-button
+              (click)="moveItem(available, S5)"
+              [disabled]="available.pick.length === 0 || S5.list.length >= 1"
+              color="white"
+            >
+              {{ format.add }} <mat-icon class="mat-18">add</mat-icon>
+            </button>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div>
+          <h2>S6</h2>
+          <h4 class="unDef">Unassigned</h4>
+          <div align="start">
+            <div
+              row
+              #itmConf
+              *ngFor="let item of S6.sift; let idx = index"
+              (click)="
+                disabled ? null : selectItem(S6.pick, item);
+                shiftClick($event, idx, S1, item)
+              "
+              [ngClass]="{
+                selected: isItemSelected(S6.pick, item),
+                disabled: disabled
+              }"
+            >
+              <mat-card class="addFlavor"
+                >{{ item._name }}
+                <button
+                  mat-icon-button
+                  (click)="moveItem(S6, available)"
+                  color="#fff"
+                  [disabled]="S6.pick.length === 0"
+                >
+                  {{ format.remove }} <mat-icon class="mat-18">clear</mat-icon>
+                </button>
+              </mat-card>
+            </div>
+
+            <button
+              class="assgnBtn"
+              id="assgnBtnS6"
+              mat-raised-button
+              (click)="moveItem(available, S6)"
+              [disabled]="available.pick.length === 0 || S6.list.length >= 1"
+              color="white"
+            >
+              {{ format.add }} <mat-icon class="mat-18">add</mat-icon>
+            </button>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div>
+          <h2>S7</h2>
+          <h4 class="unDef">Unassigned</h4>
+          <div align="start">
+            <div
+              row
+              #itmConf
+              *ngFor="let item of S7.sift; let idx = index"
+              (click)="
+                disabled ? null : selectItem(S7.pick, item);
+                shiftClick($event, idx, S7, item)
+              "
+              [ngClass]="{
+                selected: isItemSelected(S7.pick, item),
+                disabled: disabled
+              }"
+            >
+              <mat-card class="addFlavor"
+                >{{ item._name }}
+                <button
+                  mat-icon-button
+                  (click)="moveItem(S7, available)"
+                  color="#fff"
+                  [disabled]="S7.pick.length === 0"
+                >
+                  {{ format.remove }} <mat-icon class="mat-18">clear</mat-icon>
+                </button>
+              </mat-card>
+            </div>
+
+            <button
+              class="assgnBtn"
+              id="assgnBtnS7"
+              mat-raised-button
+              (click)="moveItem(available, S7)"
+              [disabled]="available.pick.length === 0 || S7.list.length >= 1"
+              color="white"
+            >
+              {{ format.add }} <mat-icon class="mat-18">add</mat-icon>
+            </button>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div>
+          <h2>S8</h2>
+          <h4 class="unDef">Unassigned</h4>
+          <div align="start">
+            <div
+              row
+              #itmConf
+              *ngFor="let item of S8.sift; let idx = index"
+              (click)="
+                disabled ? null : selectItem(S8.pick, item);
+                shiftClick($event, idx, S1, item)
+              "
+              [ngClass]="{
+                selected: isItemSelected(S8.pick, item),
+                disabled: disabled
+              }"
+            >
+              <mat-card class="addFlavor"
+                >{{ item._name }}
+                <button
+                  mat-icon-button
+                  (click)="moveItem(S7, available)"
+                  color="#fff"
+                  [disabled]="S8.pick.length === 0"
+                >
+                  {{ format.remove }} <mat-icon class="mat-18">clear</mat-icon>
+                </button>
+              </mat-card>
+            </div>
+
+            <button
+              class="assgnBtn"
+              id="assgnBtnS8"
+              mat-raised-button
+              (click)="moveItem(available, S8)"
+              [disabled]="available.pick.length === 0 || S8.list.length >= 1"
+              color="white"
+            >
+              {{ format.add }} <mat-icon class="mat-18">add</mat-icon>
+            </button>
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+      </div>
+
+      <!-- End Slots -->
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
